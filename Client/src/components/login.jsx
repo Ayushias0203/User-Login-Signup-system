@@ -65,6 +65,11 @@ const Login = ()=>{
                 history("/dash"); 
                 setinpval({...inpval,email:"",password:""});
             }
+            else if(res.status===422){
+                toast.error(res.error, {
+                    position: "top-center"
+                });
+            }
         }
     }
 

@@ -14,7 +14,7 @@ router.post("/register",async(req,res)=>{
     try{
         const preuser = await userdb.findOne({email:email})
         if(preuser){
-            res.status(422).json({error:"This email already exist"})
+            res.status(422).json({status:422,error:"This email already exist"})
         }else if(password!==cpassword){
             res.status(422).json({error:"Password and confirm password not match"})
         }else{
@@ -69,6 +69,9 @@ router.post("/login",async(req,res)=>{
                 }
                 res.status(201).json({status:201,result});
             }
+        }
+        else{
+            res.status(422).json({status:422,error:"User not found"})
         }
     } catch(error){
         res.status(401).json(error);
